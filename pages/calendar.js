@@ -6,15 +6,6 @@ import styles from "../styles/Calendar.module.css";
 import ReactDom from "react-dom";
 import React from "react";
 
-function day() {
-  const array = ["1", "2", "3", "4", "5", "6", "7"];
-  array.map((n) => {
-    var test = React.createElement("span", null, n);
-    ReactDom.render(test, document.getElementById(n));
-  });
-  return <h2>test</h2>;
-}
-
 export default function Calendar() {
   const [type, setType] = useState("");
   const [title, setTitle] = useState("");
@@ -67,10 +58,8 @@ export default function Calendar() {
             Save
           </button>
         </form>
-        {showItems()} {/*make components and pass items */}
         <section className={styles.section}>
           <aside className={styles.aside}>
-            <button onClick={day}>create event</button>
             <ul className={styles.asideUl}>
               <li>
                 <label for="class-1">Due dates : </label>
@@ -328,62 +317,6 @@ export default function Calendar() {
             </table>
           </article>
         </section>
-        <div
-          className="grid text-left"
-          style={{
-            rowGap: 0,
-            columnGap: 0,
-            columnCount: 7,
-          }}
-        >
-          <div className="border">1</div>
-          <div className="border">1</div>
-          <div className="border">1</div>
-          <div className="border">1</div>
-          <div className="border">1</div>
-          <div className="border">1</div>
-          <div className="border">7</div>
-
-          <div className="border">1</div>
-          <div className="border">2</div>
-          <div className="border">3</div>
-          <div className="border">4</div>
-          <div className="border">5</div>
-          <div className="border">6</div>
-          <div className="border">7</div>
-
-          <div className="border">1</div>
-          <div className="border">2</div>
-          <div className="border">3</div>
-          <div className="border">4</div>
-          <div className="border">5</div>
-          <div className="border">6</div>
-          <div className="border">7</div>
-
-          <div className="border">1</div>
-          <div className="border">2</div>
-          <div className="border">3</div>
-          <div className="border">4</div>
-          <div className="border">5</div>
-          <div className="border">6</div>
-          <div className="border">7</div>
-
-          <div className="border">1</div>
-          <div className="border">2</div>
-          <div className="border">3</div>
-          <div className="border">4</div>
-          <div className="border">5</div>
-          <div className="border">6</div>
-          <div className="border">7</div>
-
-          <div className="border">1</div>
-          <div className="border">2</div>
-          <div className="border">3</div>
-          <div className="border">4</div>
-          <div className="border">5</div>
-          <div className="border">6</div>
-          <div className="border">7</div>
-        </div>
       </View>
     </>
   );
@@ -392,19 +325,5 @@ export default function Calendar() {
     ev.preventDefault();
     const item = { email, type, title, date };
     await axios.post("/api/items", item);
-  }
-
-  function showItems() {
-    return (
-      <>
-        {items.map((item, idx) => (
-          <div className="rounded shadow border m-3 p-2 w-25" key={idx}>
-            <div>{item.type}</div>
-            <div>{item.title}</div>
-            <div>{item.date}</div>
-          </div>
-        ))}
-      </>
-    );
   }
 }
